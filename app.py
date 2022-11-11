@@ -5,15 +5,17 @@ app = Flask(__name__)
 
 
 @app.route('/')
-
 def hello_world():
-  return 'helrutas = app.url_maplo worldie'
+  return render_template('index.html')
 
 
 @app.route('/usuario/<name>')
 def user(name):
   return render_template('user.html', name = name)
 
+@app.route('/usuario')
+def stranger():
+  return render_template('user.html')
 
 
 @app.route('/navegador')
@@ -29,7 +31,5 @@ def routes():
 
 
 
-if __name__ == '__main__':
-  app.run(ssl_context='adhoc')
 
 
