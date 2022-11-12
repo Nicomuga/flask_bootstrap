@@ -29,7 +29,9 @@ def routes():
   print(app.url_map)
   return 'revisa tu consola para ver las rutas'
 
-
+@app.errorhandler(404)
+def page_not_found(error):
+  return render_template('page_not_found.html'), 400
 
 
 
