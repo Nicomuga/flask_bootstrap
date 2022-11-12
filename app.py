@@ -1,13 +1,28 @@
-from flask import Flask, request, render_template 
+from flask import Flask, request, render_template, url_for, flash, redirect
 
+messages = [{'title': 'Message One','content': 'Message One Content'}, {'title': 'Message Two', 'content': 'Message Two Content'}]
 
 app = Flask(__name__)
 
+app.config['SECRET_KEY'] = 'cualquier cosa'
 
 @app.route('/')
-def hello_world():
-  return render_template('index.html')
+def index():
+  return render_template('index.html', messages = messages)
 
+@app.route('/create', methods = ('GET','POST'))
+def create():
+  if request.method == 'POST':
+    title = request.form['title']
+    content = request.form['content']
+    if not title:
+      flash('el titulo es requerido')
+    elif not content:
+      flash('el contenido es requerido')
+    else:
+      messages.append({'title': title, 'content': content})
+      return redirect(url_for('index'))
+  return render_template('create.html')
 
 @app.route('/usuario/<name>')
 def user(name):
