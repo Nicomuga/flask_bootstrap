@@ -1,10 +1,22 @@
 from flask import Flask, request, render_template, url_for, flash, redirect
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
-messages = [{'title': 'Message One','content': 'Message One Content'}, {'title': 'Message Two', 'content': 'Message Two Content'}]
+
 
 app = Flask(__name__)
-
 app.config['SECRET_KEY'] = 'cualquier cosa'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:5543@localhost:5432/flask_bootstrap'
+
+db = SQLAlchemy(app)
+migrate = Migrate(app,db)
+
+class Message(db.Model):
+  __tablename__ = 'messages'
+  id = db.Column(db.Integer, primary_key=True)
+  title = db.Column(db.String(128), nullable=False)
+  content = db.Column(db.Text, nullable=False)
+
 
 @app.route('/')
 def index():
