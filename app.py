@@ -6,7 +6,7 @@ from flask_migrate import Migrate
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'cualquier cosa'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:5543@localhost:5432/flask_bootstrap'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://muga:5543@localhost:5432/flask_bootstrap'
 
 db = SQLAlchemy(app)
 migrate = Migrate(app,db)
@@ -17,9 +17,12 @@ class Message(db.Model):
   title = db.Column(db.String(128), nullable=False)
   content = db.Column(db.Text, nullable=False)
 
+  def __repr__(self):
+    return f'<message {self.title}>'
 
 @app.route('/')
 def index():
+  messages = Message.query.all()
   return render_template('index.html', messages = messages)
 
 @app.route('/create', methods = ('GET','POST'))
@@ -32,7 +35,9 @@ def create():
     elif not content:
       flash('el contenido es requerido')
     else:
-      messages.append({'title': title, 'content': content})
+      message = Message(title = title , content = content)
+      db.session.add(message)
+      db.session.commit()
       return redirect(url_for('index'))
   return render_template('create.html')
 
