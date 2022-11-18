@@ -3,19 +3,19 @@
 {% block title %} User page {% endblock %}
 
 {% block body %}
-  <h1>Agrega un nuevo mensaje</h1>
+  <h1>actualiza el mensaje</h1>
     <form method="post">
         <label for="title">Titulo</label>
         <br>
         <input type="text" name="title" id="title"
             placeholder="Titulo de mensaje"
-            value="{{ request.form['title'] }}"></input>
+            value="{{ message.title }}"></input>
         <br>
 
         <label for="picture">Foto</label>
         <br>
         <input type="text" name="picture" id="picture"
-            placeholder="URL Foto"
+            placeholder="URL foto"
             value="{{ request.form['picture'] }}"></input>
         <br>
 
@@ -25,11 +25,8 @@
                 placeholder="Contenido el mensaje"
                 rows="15"
                 cols="60"
-                >{{ request.form['content'] }}</textarea>
+                >{{ message.content }}</textarea>
         <br>
-
-        
-
         <button type="submit">Submit</button>
     </form> 
 {% endblock %}   

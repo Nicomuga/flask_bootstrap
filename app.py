@@ -16,9 +16,10 @@ class Message(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   title = db.Column(db.String(128), nullable=False)
   content = db.Column(db.Text, nullable=False)
+  picture = db.Column(db.String(300))
 
   def __repr__(self):
-    return f'<message {self.title}>'
+    return f'<Message {self.title}>'
 
 @app.route('/')
 def index():
@@ -30,16 +31,32 @@ def create():
   if request.method == 'POST':
     title = request.form['title']
     content = request.form['content']
+    picture = request.form['picture']
     if not title:
       flash('el titulo es requerido')
     elif not content:
       flash('el contenido es requerido')
     else:
-      message = Message(title = title , content = content)
+      message = Message(title = title , content = content, picture = picture)
       db.session.add(message)
       db.session.commit()
       return redirect(url_for('index'))
   return render_template('create.html')
+
+@app.route('/<id>/update', methods = ('GET', 'POST'))
+def update(id):
+  message = Message.query.filter_by(id=id).first()
+  if request.method == 'POST':
+    if message:
+      message.title = request.form['title']
+      message.picture = request.form['picture']
+      message.content = request.form['content']
+      db.session.commit()
+      return redirect('/')
+      #else: 
+        #return redirect('page_not_found')
+  return render_template('update.html', message = message)
+
 
 @app.route('/usuario/<name>')
 def user(name):
