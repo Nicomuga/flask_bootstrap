@@ -43,6 +43,16 @@ def create():
       return redirect(url_for('index'))
   return render_template('create.html')
 
+@app.route('/delete', methods = ['POST'])
+def delete():
+    id = request.form['id']
+    message = Message.query.filter_by(id=id).first()
+    db.session.delete(message)
+    db.session.commit()
+    flash('Mensaje Eliminado')
+    return redirect('/')
+
+
 @app.route('/<id>/update', methods = ('GET', 'POST'))
 def update(id):
   message = Message.query.filter_by(id=id).first()
@@ -53,8 +63,8 @@ def update(id):
       message.content = request.form['content']
       db.session.commit()
       return redirect('/')
-      #else: 
-        #return redirect('page_not_found')
+    else: 
+      return redirect('page_not_found')
   return render_template('update.html', message = message)
 
 
