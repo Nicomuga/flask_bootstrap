@@ -61,7 +61,7 @@ def update(id):
       message.title = request.form['title']
       message.picture = request.form['picture']
       message.content = request.form['content']
-      if len(message.title) > 0 and len(message.content) > 0:
+      if len(message.title) > 0 or len(message.content) > 0:
         db.session.commit()
         return redirect('/')
       else: 
