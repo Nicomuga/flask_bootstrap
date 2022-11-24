@@ -61,10 +61,11 @@ def update(id):
       message.title = request.form['title']
       message.picture = request.form['picture']
       message.content = request.form['content']
-      db.session.commit()
-      return redirect('/')
-    else: 
-      return redirect('page_not_found')
+      if len(message.title) > 0 and len(message.content) > 0:
+        db.session.commit()
+        return redirect('/')
+      else: 
+        flash('El titulo y/o contenido son requeridos')
   return render_template('update.html', message = message)
 
 
