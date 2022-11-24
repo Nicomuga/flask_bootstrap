@@ -7,15 +7,13 @@
   <form method="post">
     <div class="mb-3">
         <label for="title" class="form-label">Titulo</label>
-        <input type="text" name="title" id="title"
-        placeholder="Titulo de mensaje"
-        value="{{ request.form['title'] }}" class="form-control"></input>
+        <textarea name="title" id="title" cols="30" rows="1" value="{{ request.form['title'] }}" class="form-control" > {{ message['title'] }}</textarea>
     </div>
         
     <div class="mb-3">
         <label for="picture" class="form-label">Foto</label>
-        <input type="text" name="picture" id="picture" placeholder="URL Foto"
-        value="{{ request.form['picture'] }}" class="form-control"></input>
+        <textarea name="picture" id="picture" cols="50" rows="1" value="{{ request.form['picture'] }}" class="form-control" > {{ message['picture'] }}</textarea>
+
     </div>                  
         
     <div class="mb-3">
@@ -24,7 +22,8 @@
         placeholder="Contenido el mensaje"
         rows="15"
         cols="60"
-        class="form-control"  >{{ request.form['content'] }}</textarea>        
+        class="form-control" 
+        value="{{ request.form['content'] }}" > {{ message['content'] }} </textarea>        
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>

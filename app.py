@@ -6,7 +6,7 @@ from flask_migrate import Migrate
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'cualquier cosa'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://muga:5543@localhost:5432/flask_bootstrap'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:5543@localhost:5432/flask_bootstrap'
 
 db = SQLAlchemy(app)
 migrate = Migrate(app,db)
