@@ -1,7 +1,12 @@
 <nav class="navbar bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="{{url_for('index')}}">
+    <a class="navbar-brand" href="{{url_for('main.index')}}">
       <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" height="24" class="d-inline-block align-text-top" >
     </a>
+    <ul>
+      <li> 
+        <a href="">Mensajes</a>
+      </li>
+    </ul>
   </div>
 </nav>
