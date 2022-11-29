@@ -1,14 +1,11 @@
 from flask import Flask, request, render_template, url_for, flash, redirect
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
+
 
 
 
 app = Flask(__name__)
 
 
-db = SQLAlchemy(app)
-migrate = Migrate(app,db)
 
 class Message(db.Model):
   __tablename__ = 'messages'
@@ -20,52 +17,6 @@ class Message(db.Model):
   def __repr__(self):
     return f'<Message {self.title}>'
 
-@app.route('/')
-def index():
-  messages = Message.query.all()
-  return render_template('index.html', messages = messages)
-
-@app.route('/create', methods = ('GET','POST'))
-def create():
-  if request.method == 'POST':
-    title = request.form['title']
-    content = request.form['content']
-    picture = request.form['picture']
-    if not title:
-      flash('el titulo es requerido')
-    elif not content:
-      flash('el contenido es requerido')
-    else:
-      message = Message(title = title , content = content, picture = picture)
-      db.session.add(message)
-      db.session.commit()
-      return redirect(url_for('index'))
-  return render_template('create.html')
-
-@app.route('/delete', methods = ['POST'])
-def delete():
-    id = request.form['id']
-    message = Message.query.filter_by(id=id).first()
-    db.session.delete(message)
-    db.session.commit()
-    flash('Mensaje Eliminado')
-    return redirect('/')
-
-
-@app.route('/<id>/update', methods = ('GET', 'POST'))
-def update(id):
-  message = Message.query.filter_by(id=id).first()
-  if request.method == 'POST':
-    if message:
-      message.title = request.form['title']
-      message.picture = request.form['picture']
-      message.content = request.form['content']
-      if len(message.title) > 0 or len(message.content) > 0:
-        db.session.commit()
-        return redirect('/')
-      else: 
-        flash('El titulo y/o contenido son requeridos')
-  return render_template('update.html', message = message)
 
 
 @app.route('/usuario/<name>')

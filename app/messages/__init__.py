@@ -1,5 +1,5 @@
-from flaskk import Blueprint
+from flask import Blueprint
 
-bp = blueprint('messages', __name__)
+bp = Blueprint('messages', __name__)
 
 from app.messages import routes
