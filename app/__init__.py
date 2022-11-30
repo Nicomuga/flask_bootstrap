@@ -11,11 +11,18 @@ def create_app(config_class=Config):
     migrate.init_app(app,db)
 
     # Register blueprints here
+
+    # main blueprint
     from app.main import bp as main_bp
     app.register_blueprint(main_bp)
 
+    # message blueprint
     from app.messages import bp as messages_bp
     app.register_blueprint(messages_bp, url_prefix='/messages')
+
+    #memes blueprint
+    from app.memes import bp as memes_bp
+    app.register_blueprint(memes_bp, url_prefix='/memes')
 
     @app.route('/test/')
     def test_page():

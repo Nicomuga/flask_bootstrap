@@ -1,5 +1,5 @@
 from app.messages import bp
-from flask import Flask, redirect, render_template,request
+from flask import Flask, redirect, render_template,request, url_for, flash
 from app.models.message import Message
 from app.extensions import db, migrate
 
@@ -23,8 +23,8 @@ def create():
       message = Message(title = title , content = content, picture = picture)
       db.session.add(message)
       db.session.commit()
-      return redirect('/messages')
-  return render_template('create.html')
+      return redirect(url_for('messages.index'))
+  return render_template('messages/create.html')
 
 @bp.route('/delete', methods = ['POST'])
 def delete():
@@ -33,7 +33,7 @@ def delete():
     db.session.delete(message)
     db.session.commit()
     flash('Mensaje Eliminado')
-    return redirect('/messages')
+    return redirect(url_for('messages.index'))
 
 
 @bp.route('/<id>/update', methods = ('GET', 'POST'))
@@ -46,7 +46,8 @@ def update(id):
       message.content = request.form['content']
       if len(message.title) > 0 or len(message.content) > 0:
         db.session.commit()
-        return redirect('/messages')
+        return redirect(url_for('messages.index'))
       else: 
         flash('El titulo y/o contenido son requeridos')
-  return render_template('update.html', message = message)
+  return render_template('messages/update.html', message = message)
+
