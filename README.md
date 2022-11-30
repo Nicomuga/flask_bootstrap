@@ -61,3 +61,5 @@ Los módulos se pueden anidar, de hecho, nosotros hicimos el módulo `app` con s
 
 Crear un nuevo recurso sencillo, sin base de datos, como blueprint bajo la url `/memes`y debe renderiar un html lleno de memes
 
+SECRET_KEY = cualquier cosa
+DATABASE_URI = postgresql://muga:5543@localhost:5432/flask_bootstrap
