@@ -80,6 +80,14 @@ Crear un nuevo recurso sencillo, sin base de datos, como blueprint bajo la url `
 SECRET_KEY = cualquier cosa
 DATABASE_URI = postgresql://muga:5543@localhost:5432/flask_bootstrap
 
-## mvc (Model-View-Controller)
+## MVC (Model-View-Controller)
 
 ![MVC](https://cdn.educba.com/academy/wp-content/uploads/2019/04/what-is-mvc-design-pattern.jpg.webp)
+
+Es una arquitectura para separar las responsabilidades en la manipulación de las solicitudes/respuestas(request/response).
+
+Quien recibe las solicitudes es el Controlador o en Flask, las rutas. Los controladores se encargan de revisar que las solicitudes se cumplan con las caracteristicas necesarias para entregar una respuesta acoorde (que tenga todos los datos). 
+
+Si el controlador lo permite, se podría, opcionalmente, llamar al modelo para obtener o modificar los datos de la BDD. Y finalmente enviuar respuesta(response) que contenga la presentacion de la aplicación. En nuestro caso, en Flask, la capa de presentación comunmente conocida como Vistas(views) se llaman Templates.
+
+Por lo tanto, en Flask el MVC podría ser adaptado como MTR (Modelo, Template, Ruta), pero es lo mismo en términos de separar la responsabilidad.
