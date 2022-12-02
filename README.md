@@ -46,8 +46,24 @@ flask db migrate -"<mensaje de la migración>"
 Para ejecutar el servidor de desarrrollo el comando es el siguiente
 
 ```
+bash
+pipenv shell
+pipenv install
+set FLASK_APP=app
+set FLASK_ENV=development
+flask run
+```
+o con la siguiente linea
+
+```
 flask --app <nombre_aplicacion> --debug run
 ```
+Y si tiene el archivo env con las variables FLASK_DEBUG=1 y FLASK_APP=app, solo debe ejecuta el comando:
+
+```
+pipenv run flask run
+```
+
 ## Blueprints
 
 Los blueprints permiten componer aplicaciones desde componentes pequeños. Cada componente es como una mini aplicación. Permite crear aplicaciones grandes manteniendolas simples
@@ -63,3 +79,7 @@ Crear un nuevo recurso sencillo, sin base de datos, como blueprint bajo la url `
 
 SECRET_KEY = cualquier cosa
 DATABASE_URI = postgresql://muga:5543@localhost:5432/flask_bootstrap
+
+## mvc (Model-View-Controller)
+
+![MVC](https://cdn.educba.com/academy/wp-content/uploads/2019/04/what-is-mvc-design-pattern.jpg.webp)
