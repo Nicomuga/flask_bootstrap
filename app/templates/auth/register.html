@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %} User page {% endblock %}
+
+{% block body %}
+  <h1 class="text-center" >Registrate</h1>
+    <form method="post">
+        <div class="mb-3">
+            <label for="username" class="form-label">Nobre de usuario</label>
+            <input type="text" name="username" id="username"
+            placeholder="Username"
+            value="{{ request.form['username'] }}" class="form-control"></input>
+        </div>
+            
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="text" name="email" id="email" placeholder="Agrega tu email"
+            value="{{ request.form['email'] }}" class="form-control"></input>
+        </div>                  
+            
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" name="password" id="password" placeholder="Agrega tu contraseña"
+            value="{{ request.form['password'] }}" class="form-control"></input>        
+        </div>
+
+        <div class="mb-3">
+            <label for="password_confirm" class="form-label">Password</label>
+            <input type="password" name="password_confirm" id="password_confirm" placeholder="verifica tu contraseña"
+            value="{{ request.form['password_confirm'] }}" class="form-control">Tu contraseña debe tener 6 caracteres</input>        
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form> 
+{% endblock %}   
