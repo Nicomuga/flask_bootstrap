@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %} User page {% endblock %}
+
+{% block body %}
+  <h1 class="text-center">Login</h1>
+    <form method="post">
+        <div class="mb-3">
+            <label for="username" class="form-label">Ingresa tu correo</label>
+            <input type="email" name="email" id="email" placeholder="email" value="{{ request.form['email'] }}" class="form-control"></input>
+        </div>         
+            
+        <div class="mb-3">
+            <label for="password" class="form-label">Ingresa tu Password</label>
+            <input type="password" name="password" id="password" placeholder="Agrega tu contraseña" value="{{ request.form['password'] }}" class="form-control"></input>        
+        </div>
+
+        <input type="checkbox" name="remember_me" id="remember_me" value="{{ request.form['remember_me'] }}">
+        <label for="remember_me" class="form-label" >Mantener sesión</label>
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+    </form> 
+{% endblock %}   
