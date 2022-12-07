@@ -11,6 +11,7 @@ def create_app(config_class=Config):
     migrate.init_app(app,db)
     login_manager.init_app(app)
 
+
     # Register blueprints here
     # main blueprint
     from app.main import bp as main_bp
