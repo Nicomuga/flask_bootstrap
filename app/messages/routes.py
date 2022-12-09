@@ -12,19 +12,9 @@ def index():
   '''m_user_id = User.query.filter_by(username = str(current_user)).first()
   print(m_user_id)'''
  
-  messages = Message.query.all() 
-  return render_template('messages/index.html', messages = messages)
-
-@bp.route('/muro')
-@login_required
-def muro():
   print(current_user)
   messages = Message.query.filter_by(user = current_user).all()
-  return render_template('messages/muro.html', messages = messages)
-
-
-
-
+  return render_template('messages/index.html', messages = messages)
 
 
 

@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %} User page {% endblock %}
+{% block title %} Mi muro {% endblock %}
 
 {% block body %}
 <!-- Begin page content -->
@@ -21,15 +21,12 @@
               <h3 class="card-title">{{ message['title'] }}</h3>         
               <p class="card-text">{{ message['content'] }}</p>         
                   
-
-
-            {% if current_user == "<User '123'>" %} 
               <a href="{{ url_for('messages.update', id = message.id)}}" class="btn btn-primary">Actualizar</a>  
               <form action="{{url_for('messages.delete')}}" method="post" onsubmit ="return confirm('tai seguro?')" class="d-inline">
                 <input type="hidden" name="id" value="{{message.id}}">
                 <input type="submit" value="Eliminar" class="btn btn-danger">
               </form>
-            {% endif %}
+              
             </div>
         </div>
       </div>
