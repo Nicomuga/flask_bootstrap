@@ -8,5 +8,8 @@ class Message(db.Model):
   content = db.Column(db.Text, nullable=False)
   picture = db.Column(db.String(300))
 
+  #Stablish the relation between table messages and users, between model user and model message
+  user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
   def __repr__(self):
     return f'<Message {self.title}>'

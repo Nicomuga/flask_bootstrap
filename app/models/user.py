@@ -10,6 +10,9 @@ class User(UserMixin, db.Model):
   username = db.Column(db.String(64), unique = True, index = True, nullable=False)
   password_hash = db.Column(db.String(128), nullable=False)
 
+  #Stablish the relation between table messages and users, between model user and model message
+  messages = db.relationship('Message', backref = 'user')
+
   @property
   def password(self):
     raise AttributeError('password is not a readableattribute')
@@ -20,6 +23,9 @@ class User(UserMixin, db.Model):
 
   def verify_password(self, password):
     return check_password_hash(self.password_hash, password)
+
+  def __repr__(self):
+    return '<User %r>' % self.username
 
 @login_manager.user_loader
 def load_user(id):

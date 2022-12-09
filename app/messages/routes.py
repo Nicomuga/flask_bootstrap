@@ -1,15 +1,35 @@
 from app.messages import bp
 from flask import Flask, redirect, render_template,request, url_for, flash
 from app.models.message import Message
+from app.models.user import User
 from app.extensions import db, migrate
+from flask_login import login_required, current_user
 
 
 @bp.route('/')
+@login_required
 def index():
-  messages = Message.query.all()
+  '''m_user_id = User.query.filter_by(username = str(current_user)).first()
+  print(m_user_id)'''
+ 
+  messages = Message.query.all() 
   return render_template('messages/index.html', messages = messages)
 
+@bp.route('/muro')
+@login_required
+def muro():
+  print(current_user)
+  messages = Message.query.filter_by(user = current_user).all()
+  return render_template('messages/muro.html', messages = messages)
+
+
+
+
+
+
+
 @bp.route('/create', methods = ('GET','POST'))
+@login_required
 def create():
   if request.method == 'POST':
     title = request.form['title']
@@ -20,13 +40,14 @@ def create():
     elif not content:
       flash('el contenido es requerido')
     else:
-      message = Message(title = title , content = content, picture = picture)
+      message = Message(title = title , content = content, picture = picture, user = current_user)
       db.session.add(message)
       db.session.commit()
       return redirect(url_for('messages.index'))
   return render_template('messages/create.html')
 
 @bp.route('/delete', methods = ['POST'])
+@login_required
 def delete():
     id = request.form['id']
     message = Message.query.filter_by(id=id).first()
@@ -37,6 +58,7 @@ def delete():
 
 
 @bp.route('/<id>/update', methods = ('GET', 'POST'))
+@login_required
 def update(id):
   message = Message.query.filter_by(id=id).first()
   if request.method == 'POST':
