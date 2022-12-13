@@ -17,6 +17,8 @@ def create_app(config_class=environment_config):
 
 
     # Register blueprints here
+
+
     # main blueprint
     from app.main import bp as main_bp
     app.register_blueprint(main_bp)
@@ -25,9 +27,11 @@ def create_app(config_class=environment_config):
     from app.messages import bp as messages_bp
     app.register_blueprint(messages_bp, url_prefix='/messages')
 
-    #memes blueprint
-    from app.memes import bp as memes_bp
-    app.register_blueprint(memes_bp, url_prefix='/memes')
+    #admin blueprint
+    from app.admin import bp as admin_bp
+    app.register_blueprint(admin_bp, url_prefix='/admin')
+
+   
 
     #users blueprint
     from app.auth import bp as auth_bp

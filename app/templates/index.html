@@ -20,14 +20,17 @@
             <div class="card-body">          
             <h3 class="card-title">{{ message['title'] }}</h3>         
             <p class="card-text">{{ message['content'] }}</p>
-            {% if message.user == current_user %}
+            {% if current_user == 1 %}
             <a href="{{ url_for('messages.update', id = message.id)}}" class="btn btn-warning">Actualizar</a>         
             <form action="{{url_for('messages.delete')}}" method="post" onsubmit ="return confirm('tai seguro?')" class="d-inline">
               <input type="hidden" name="id" value="{{message.id}}">
               <input type="submit" value="Eliminar" class="btn btn-danger">
             </form>
             {% else %}
-            <p class="text-sm">Creado por {{message.user.username }}</p> 
+            <form action="{{url_for()}}" method="post" class="d-inline">
+              <input type="hidden" name="id" value="{{message.id}}">
+              <input type="submit" value="Eliminar" class="btn btn-primary">
+            </form> 
             {% endif %}
           </div>
         </div>
