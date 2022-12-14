@@ -7,6 +7,7 @@ class Message(db.Model):
   title = db.Column(db.String(128), nullable=False)
   content = db.Column(db.Text, nullable=False)
   picture = db.Column(db.String(300))
+  type_of = db.Column(db.String(20), nullable=False)
 
   #Stablish the relation between table messages and users, between model user and model message
   user_id = db.Column(db.Integer, db.ForeignKey('users.id'))

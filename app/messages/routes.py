@@ -25,12 +25,15 @@ def create():
     title = request.form['title']
     content = request.form['content']
     picture = request.form['picture']
+    type_of = request.form['type_of']
     if not title:
       flash('el titulo es requerido')
     elif not content:
       flash('el contenido es requerido')
+    elif not type_of:
+      flash('el tipo es requerido')  
     else:
-      message = Message(title = title , content = content, picture = picture, user = current_user)
+      message = Message(title = title , content = content, picture = picture, user = current_user, type_of = type_of)
       db.session.add(message)
       db.session.commit()
       return redirect(url_for('messages.index'))

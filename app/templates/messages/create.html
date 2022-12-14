@@ -21,10 +21,16 @@
         <div class="mb-3">
             <label for="content" class="form-label">Contenido del mensaje</label>
             <textarea name="content" id = content
-            placeholder="Contenido el mensaje"
+            placeholder="Contenido del mensaje"
             rows="15"
             cols="60"
             class="form-control">{{ request.form['content'] }}</textarea>        
+        </div>
+
+        <div class="mb-3">
+            <label for="type_of" class="form-label">Tipo de imagen </label>
+            <input type="text" name="type_of" id="type_of" placeholder="type"
+            value="{{ request.form['type_of'] }}" class="form-control"></input>
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
