@@ -1,6 +1,7 @@
 from app.main import bp
 from flask import Flask, redirect, render_template,request, url_for, flash
 from app.models.message import Message
+from app.models.sizelink import Sizelink
 from flask_login import login_required, current_user
 
 
@@ -8,7 +9,8 @@ from flask_login import login_required, current_user
 @bp.route('/')
 def index():
     messages = Message.query.all()
-    return render_template('index.html', messages = messages )
+    sizelink = Sizelink.query.all()
+    return render_template('index.html', messages = messages, sizelink = sizelink )
     
 
 @bp.app_errorhandler(404)

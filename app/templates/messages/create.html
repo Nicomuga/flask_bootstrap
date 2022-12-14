@@ -3,23 +3,23 @@
 {% block title %} User page {% endblock %}
 
 {% block body %}
-  <h1 class="text-center" >Agrega un nuevo mensaje</h1>
+  <h1 class="text-center" >Agrega un nuevo Producto</h1>
     <form method="post">
         <div class="mb-3">
             <label for="title" class="form-label">Titulo</label>
             <input type="text" name="title" id="title"
-            placeholder="Titulo de mensaje"
+            placeholder="Titulo de la imágen"
             value="{{ request.form['title'] }}" class="form-control"></input>
         </div>
             
         <div class="mb-3">
-            <label for="picture" class="form-label">Foto</label>
+            <label for="picture" class="form-label">Imágen</label>
             <input type="text" name="picture" id="picture" placeholder="URL Foto"
             value="{{ request.form['picture'] }}" class="form-control"></input>
         </div>                  
             
         <div class="mb-3">
-            <label for="content" class="form-label">Contenido del mensaje</label>
+            <label for="content" class="form-label">Descripción</label>
             <textarea name="content" id = content
             placeholder="Contenido del mensaje"
             rows="15"
@@ -33,6 +33,10 @@
             value="{{ request.form['type_of'] }}" class="form-control"></input>
         </div>
 
+        
+
+
         <button type="submit" class="btn btn-primary">Submit</button>
-    </form> 
+        
+
 {% endblock %}   

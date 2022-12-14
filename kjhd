@@ -4,36 +4,26 @@
 
 {% block body %}
 <!-- Begin page content -->
-
 <main class="flex-shrink-0">
   <div class="container">
     <h1 class="d-inline">Mensajes</h1>
     <a href="{{ url_for('messages.create')}}" class='btn btn-primary float-end'>Nuevo</a>
     
-
     {% for message in messages %}
+    {% for type in messages.type_of %}
     <div class="row">
-    {% if not message.type_of  %}
-    <div class="container">
-      <h2>
-        {{ message['type_of']}}
-      </h2>
-    </div>
-    {% endif %}
-
-    {% for message in messages %}
-    {% if loop.index0 == 0 %}
-      <div class="col-5">
-
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="false">
+      {% endfor %}
+      
+        <div class="col-5">
+          
           <div class="carousel-inner">
-            
             {% for message in messages %}
-            <div class="carousel-item {% if loop.index0 == 0 %} active {% endif %} ">
-              <img src="{{ message['picture']}}" class="d-block w-100" value="{{ message['id']}}" alt="...">
+            {% if message.type_of == 'lican' %}
+            <div class="carousel-item active">
+              <img src="{{ message['picture']}}" class="d-block w-100" alt="{{ message['title'] }}">
             </div>
-            {% endfor %}
-            
+            {% endif %}
+            {% endfor %}  
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -46,12 +36,31 @@
         </div>
       </div>
       
+      <div class="col-7">
+        <div class="container">
+          
+          <h3 class="card-title">{{ message['title'] }}</h3>         
+          <p class="card-text">{{ message['content'] }}</p>
+        </div>
+        <div class="container">
+          <h5>Elige el tamaño de tu cuadro</h5>
+          <p class="card-text">{{ sizelink['size'] }}</p>
+          <form action="">
+            <input type="checkbox" name="15*20" id="15*20">
+            <label for="15*20"></label>
+            <input type="checkbox" name="10*5" id="10*5">
+            <label for="">10*5</label>
+            
+            
+          </form>
+        </div>
+      </div>
     </div>
-    {% endif %}
-    {% endfor %}
-    {% endfor %}
     
     
+    {% endfor %}
+
+
   </div>
 </main>
 {% endblock %}    

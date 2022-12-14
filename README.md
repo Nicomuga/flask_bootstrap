@@ -91,3 +91,40 @@ Quien recibe las solicitudes es el Controlador o en Flask, las rutas. Los contro
 Si el controlador lo permite, se podría, opcionalmente, llamar al modelo para obtener o modificar los datos de la BDD. Y finalmente enviuar respuesta(response) que contenga la presentacion de la aplicación. En nuestro caso, en Flask, la capa de presentación comunmente conocida como Vistas(views) se llaman Templates.
 
 Por lo tanto, en Flask el MVC podría ser adaptado como MTR (Modelo, Template, Ruta), pero es lo mismo en términos de separar la responsabilidad.
+
+
+```
+github/workflows 
+--main.yml
+    # This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  push:
+    branches: [main]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+          heroku_email: ${{secrets.HEROKU_EMAIL}} 
+```
+
+
+Para correr las migraciones en consola de heroku
+flask --app heroku:app deploy

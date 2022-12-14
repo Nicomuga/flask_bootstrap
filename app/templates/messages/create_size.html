@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %} User page {% endblock %}
+
+{% block body %}
+  <h1 class="text-center" >Agrega un nuevo tamaño</h1>
+    
+    <form method="post">
+        <div class="mb-3"> 
+            <div class="mb-3">
+                <label for="link" class="form-label">Link de pago </label>
+                <input type="text" name="link" id="link" placeholder="link de pago"
+                value="{{ request.form['link'] }}" class="form-control"></input>
+            </div>
+    
+            <div class="mb-3">
+                <label for="price" class="form-label">Precio</label>
+                <input type="text" name="price" id="price" placeholder="type"
+                value="{{ request.form['price'] }}" class="form-control"></input>
+            </div>
+
+            <div class="mb-3">
+                <label for="size" class="form-label">Tamaño</label>
+                <input type="text" name="size" id="size" placeholder="type"
+                value="{{ request.form['price'] }}" class="form-control"></input>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>    
+    </form>    
+{% endblock %}   
