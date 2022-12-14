@@ -6,16 +6,16 @@
   <h1 class="text-center" >Agrega un nuevo Producto</h1>
     <form method="post">
         <div class="mb-3">
-            <label for="title" class="form-label">Titulo</label>
-            <input type="text" name="title" id="title"
+            <label for="name" class="form-label">Nombre de la img</label>
+            <input type="text" name="name" id="name"
             placeholder="Titulo de la imágen"
-            value="{{ request.form['title'] }}" class="form-control"></input>
+            value="{{ request.form['name'] }}" class="form-control"></input>
         </div>
             
         <div class="mb-3">
             <label for="picture" class="form-label">Imágen</label>
-            <input type="text" name="picture" id="picture" placeholder="URL Foto"
-            value="{{ request.form['picture'] }}" class="form-control"></input>
+            <input type="text" name="img" id="img" placeholder="URL Foto"
+            value="{{ request.form['img'] }}" class="form-control"></input>
         </div>                  
             
         <div class="mb-3">

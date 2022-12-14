@@ -9,30 +9,24 @@
   <div class="container">
     <h1 class="d-inline">Mensajes</h1>
     <a href="{{ url_for('messages.create')}}" class='btn btn-primary float-end'>Nuevo</a>
-    
 
-    {% for message in messages %}
-    <div class="row">
-    {% if not message.type_of  %}
-    <div class="container">
-      <h2>
-        {{ message['type_of']}}
-      </h2>
-    </div>
-    {% endif %}
-
-    {% for message in messages %}
-    {% if loop.index0 == 0 %}
       <div class="col-5">
 
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="false">
           <div class="carousel-inner">
             
-            {% for message in messages %}
+          {% for gender in genders %}
+            
+          <div class="container">
+            <h2>
+              {{ gender['name']}}
+            </h2>
+          </div>
+    
             <div class="carousel-item {% if loop.index0 == 0 %} active {% endif %} ">
-              <img src="{{ message['picture']}}" class="d-block w-100" value="{{ message['id']}}" alt="...">
+              <img src="{{ images['img']}}" class="d-block w-100"  alt="...">
             </div>
-            {% endfor %}
+          {% endfor %}
             
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -47,9 +41,8 @@
       </div>
       
     </div>
-    {% endif %}
-    {% endfor %}
-    {% endfor %}
+    
+    
     
     
   </div>
