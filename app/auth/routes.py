@@ -1,13 +1,20 @@
-from app.auth import bp
+ffrom app.auth import bp
 from flask import Flask, render_template, request, flash, redirect, url_for
-from flask_login import login_user,logout_user, login_required
+from flask_login import login_user,logout_user, login_required, current_user
 from app.models.user import User
 from app.extensions import db
 
 @bp.route('/')
+@login_required
 def index():
-    users = User.query.all()
-    return render_template('auth/index.html', users=users)
+    id = current_user.id
+    
+    if id == 1:
+        users = User.query.all()
+        return render_template('auth/index.html', users=users)
+    else:
+        flash('No tienes los permisos para ingresar a este apartado')
+        return redirect(url_for('main.index'))    
 
 @bp.route('/register', methods = ('GET','POST'))
 def register():
