@@ -18,10 +18,7 @@
         </li>
         
         {% if current_user.is_authenticated %}  
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{{ url_for('auth.logout') }}">Salir</a>
-        </li>
-          {% if current_user.id == 1 %}
+        {% if current_user.id == 1 %}
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="{{ url_for('admin.index') }}">Admin</a>
         </li>
@@ -30,6 +27,9 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="{{ url_for('messages.index') }}">Todos los productos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{{ url_for('auth.logout') }}">Salir</a>
         </li>
           {% endif %}
         {% else %}
