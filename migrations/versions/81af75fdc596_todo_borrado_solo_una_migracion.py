@@ -1,8 +1,8 @@
-"""empty message
+"""todo borrado solo una migracion
 
-Revision ID: b727a02986d1
-Revises: 8406172a8e18
-Create Date: 2022-12-13 00:12:28.153687
+Revision ID: 81af75fdc596
+Revises: 
+Create Date: 2022-12-15 07:55:13.809227
 
 """
 from alembic import op
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'b727a02986d1'
-down_revision = '8406172a8e18'
+revision = '81af75fdc596'
+down_revision = None
 branch_labels = None
 depends_on = None
 
@@ -34,6 +34,8 @@ def upgrade():
     sa.Column('title', sa.String(length=128), nullable=False),
     sa.Column('content', sa.Text(), nullable=False),
     sa.Column('picture', sa.String(length=300), nullable=True),
+    sa.Column('price', sa.Integer(), nullable=True),
+    sa.Column('link', sa.String(length=100), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
