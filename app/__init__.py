@@ -12,7 +12,7 @@ def create_app(config_class=environment_config):
 
     # Initialize Flask extensions here
     db.init_app(app)
-    migrate.init_app(app,db)
+    migrate.init_app(app,db, render_as_batch=True)
     login_manager.init_app(app)
 
 
@@ -30,8 +30,6 @@ def create_app(config_class=environment_config):
     #admin blueprint
     from app.admin import bp as admin_bp
     app.register_blueprint(admin_bp, url_prefix='/admin')
-
-   
 
     #users blueprint
     from app.auth import bp as auth_bp
