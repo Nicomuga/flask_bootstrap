@@ -1,4 +1,4 @@
-from app.auth import bp
+ffrom app.auth import bp
 from flask import Flask, render_template, request, flash, redirect, url_for
 from flask_login import login_user,logout_user, login_required, current_user
 from app.models.user import User
