@@ -3,21 +3,21 @@
 {% block title %} User page {% endblock %}
 
 {% block body %}
-  <h1 class="text-center" >Actualiza el mensaje</h1>
+  <h1 class="text-center" >Actualiza el producto</h1>
   <form method="post">
     <div class="mb-3">
-        <label for="title" class="form-label">Titulo</label>
+        <label for="title" class="form-label">Nombre del producto</label>
         <textarea name="title" id="title" cols="30" rows="1" value="{{ request.form['title'] }}" class="form-control" > {{ message['title'] }}</textarea>
     </div>
         
     <div class="mb-3">
-        <label for="picture" class="form-label">Foto</label>
+        <label for="picture" class="form-label">Foto del producto</label>
         <textarea name="picture" id="picture" cols="50" rows="1" value="{{ request.form['picture'] }}" class="form-control" > {{ message['picture'] }}</textarea>
 
     </div>                  
         
     <div class="mb-3">
-        <label for="content" class="form-label">Contenido del mensaje</label>
+        <label for="content" class="form-label">Descripción del producto</label>
         <textarea name="content" id = content
         placeholder="Contenido el mensaje"
         rows="15"
@@ -26,5 +26,15 @@
         value="{{ request.form['content'] }}" > {{ message['content'] }} </textarea>        
     </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <div class="mb-3">
+        <label for="price" class="form-label">Precio del producto</label>
+        <textarea name="price" id="price" cols="50" rows="1" value="{{ request.form['price'] }}" class="form-control" > {{ message['price'] }}</textarea>
+    </div> 
+
+    <div class="mb-3">
+        <label for="link" class="form-label">Link del producto</label>
+        <textarea name="link" id="link" cols="50" rows="1" value="{{ request.form['link'] }}" class="form-control" > {{ message['link'] }}</textarea>
+    </div> 
+
+    <button type="submit" class="btn btn-primary">Actualiza el producto</button>
 {% endblock %}   

@@ -3,36 +3,42 @@
 {% block title %} User page {% endblock %}
 
 {% block body %}
-  <h1 class="text-center" >Agrega un nuevo mensaje</h1>
+  <h1 class="text-center" >Agrega un nuevo Producto</h1>
     <form method="post">
         <div class="mb-3">
-            <label for="title" class="form-label">Titulo</label>
+            <label for="title" class="form-label">Nombre</label>
             <input type="text" name="title" id="title"
-            placeholder="Titulo de mensaje"
+            placeholder="Nombre del mensaje"
             value="{{ request.form['title'] }}" class="form-control"></input>
         </div>
             
         <div class="mb-3">
-            <label for="picture" class="form-label">Foto</label>
+            <label for="picture" class="form-label">Foto del producto</label>
             <input type="text" name="picture" id="picture" placeholder="URL Foto"
             value="{{ request.form['picture'] }}" class="form-control"></input>
         </div>                  
             
         <div class="mb-3">
-            <label for="content" class="form-label">Contenido del mensaje</label>
+            <label for="content" class="form-label">Descripción del producto</label>
             <textarea name="content" id = content
-            placeholder="Contenido del mensaje"
+            placeholder="Descripción del producto"
             rows="15"
             cols="60"
             class="form-control">{{ request.form['content'] }}</textarea>        
         </div>
 
         <div class="mb-3">
-            <label for="type_of" class="form-label">Tipo de imagen </label>
-            <input type="text" name="type_of" id="type_of" placeholder="type"
-            value="{{ request.form['type_of'] }}" class="form-control"></input>
+            <label for="price" class="form-label">Precio </label>
+            <input type="text" name="price" id="price" placeholder="type"
+            value="{{ request.form['price'] }}" class="form-control"></input>
         </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="mb-3">
+            <label for="link" class="form-label">Link de pago </label>
+            <input type="text" name="link" id="link" placeholder="type"
+            value="{{ request.form['link'] }}" class="form-control"></input>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Agregar</button>
     </form> 
 {% endblock %}   

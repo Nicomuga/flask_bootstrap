@@ -9,10 +9,6 @@ from flask_login import login_required, current_user
 @bp.route('/')
 @login_required
 def index():
-  '''m_user_id = User.query.filter_by(username = str(current_user)).first()
-  print(m_user_id)'''
- 
-  print(current_user)
   messages = Message.query.filter_by(user = current_user).all()
   return render_template('messages/index.html', messages = messages)
 
@@ -25,15 +21,18 @@ def create():
     title = request.form['title']
     content = request.form['content']
     picture = request.form['picture']
-    type_of = request.form['type_of']
+    price = request.form['price']
+    link = request.form['link']
     if not title:
       flash('el titulo es requerido')
     elif not content:
       flash('el contenido es requerido')
-    elif not type_of:
-      flash('el tipo es requerido')  
+    elif not price:
+      flash('el precio es requerido')
+    elif not link:
+      flash('el link es requerido')  
     else:
-      message = Message(title = title , content = content, picture = picture, user = current_user, type_of = type_of)
+      message = Message(title = title , content = content, picture = picture, user = current_user, price = price, link = link)
       db.session.add(message)
       db.session.commit()
       return redirect(url_for('messages.index'))
@@ -59,6 +58,9 @@ def update(id):
       message.title = request.form['title']
       message.picture = request.form['picture']
       message.content = request.form['content']
+      message.price = reques.form['price']
+      message.link = reques.form['link']
+      
       if len(message.title) > 0 or len(message.content) > 0:
         db.session.commit()
         return redirect(url_for('messages.index'))

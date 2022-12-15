@@ -7,7 +7,7 @@ from flask_login import login_required, current_user
 
 @bp.route('/')
 def index():
-    messages = Message.query.all()
+    messages = Message.query.order_by('id').all()
     return render_template('index.html', messages = messages )
     
 
