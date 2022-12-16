@@ -12,20 +12,22 @@
     {% if current_user.id == 1 %}
     <a href="{{ url_for('messages.create')}}" class='btn btn-primary float-end'>Nuevo</a>
     {% endif %}
-
+  </div>
+    
     {% for message in messages %}
     {% if loop.index0 % 3 == 0 %}
     <div class="row">
       {% endif %}
+
           <div class="col">  
             <div class='card m-3' >      
                 <img src="{{ message['picture']}}" class = 'card-img-top' alt="{{ message['title']}}"  >
                 <div class="card-body">          
-                <h3 class="card-title">{{ message['title'] }}</h3>         
-                <p class="card-text">{{ message['content'] }}</p>
-                {% if message['price'] %}
-                <h3 class="card-title">{{ "${:}".format(message['price']) }}</h3>
-                {% endif %}
+                  <h3 class="card-title">{{ message['title'] }}</h3>         
+                  <p class="card-text">{{ message['content'] }}</p>
+                  {% if message['price'] %}
+                  <h3 class="card-title">{{ "${:}".format(message['price']) }}</h3>
+                  {% endif %}
                 {% if current_user == 1 %}
                 <a href="{{ url_for('messages.update', id = message.id)}}" class="btn btn-warning">Actualizar</a>         
                 <form action="{{url_for('messages.delete')}}" method="post" onsubmit ="return confirm('tai seguro?')" class="d-inline">
@@ -38,7 +40,6 @@
               </div>
             </div>
           </div>
-  </div>
   {% endfor %}
   </div>
 </main>
